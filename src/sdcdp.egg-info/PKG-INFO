@@ -1,0 +1,15 @@
+Metadata-Version: 2.2
+Name: sdcdp
+Version: 0.1
+Summary: A framework for sampling multiplex networks.
+Author: Alec Fluer
+License: MIT
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: networkx
+Requires-Dist: scipy
+Requires-Dist: setuptools
+Dynamic: author
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: summary

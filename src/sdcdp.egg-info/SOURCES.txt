@@ -1,0 +1,11 @@
+setup.py
+src/sdcdp/__init__.py
+src/sdcdp/ds.py
+src/sdcdp/sda.py
+src/sdcdp/sdcdp.py
+src/sdcdp/tools.py
+src/sdcdp.egg-info/PKG-INFO
+src/sdcdp.egg-info/SOURCES.txt
+src/sdcdp.egg-info/dependency_links.txt
+src/sdcdp.egg-info/requires.txt
+src/sdcdp.egg-info/top_level.txt
