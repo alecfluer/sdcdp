@@ -38,6 +38,44 @@ $$
 \alpha_{kl} = \frac{1}{\tau_k \tau_l} \ln\left(\rho_{kl} \frac{\sigma_k \sigma_l}{\gamma_k \gamma_l} + 1\right)
 $$
 
+## **Mathematical Formulation**
+
+Let $G=(V,E,\Lambda)$ be a multiplex network with $|V|=N$ nodes and $|\Lambda|=L$ network layers.
+
+Let $\boldsymbol{d}_l=(d_{1l},\dots,d_{Nl})$, where each coordinate $d_{il}$ denotes the degree of node $i$ in network layer $l$. Let $\boldsymbol{\mu}_i=(\mu_{i1},\dots,\mu_{iL})$, where each coordinate $\mu_{il}$ denotes the mean degree of node $i$ in network layer $l$. These are sampled according to:
+
+$$
+d_{il} \mid \mu_{il} \sim \text{Poisson}(\mu_{il})
+$$
+
+$$
+\boldsymbol{\mu}_i \sim \text{Multivariate-Lognormal}(\boldsymbol{\theta}, \Sigma) = \exp(\text{MVN}(\boldsymbol{\theta}, \Sigma))
+$$
+
+Let $\gamma_l$ and $\sigma^2_l$ be the desired mean and variance of the degree sequence in network layer $l$, respectively, where $0<\gamma_l < \sigma^2_l$. Let $\rho_{kl}=\rho_{lk}$ be the desired Pearson correlation coefficient between the degree sequences in network layers $k$ and $l$. The multivariate lognormal distribution parameters are computed as:
+
+$$
+\theta_l = \ln\left(\frac{\gamma_l}{\sqrt{1 + \frac{\sigma^2_l - \gamma_l}{\gamma_l^2}}} \right)
+$$
+
+$$
+\Sigma = \text{diag}(\boldsymbol{\tau}) \Omega \text{diag}(\boldsymbol{\tau})
+\quad , \quad
+\tau^2_l = \ln\left(1 + \frac{\sigma^2_l - \gamma_l}{\gamma_l^2}\right)
+$$
+
+$$
+\Omega_{kl} = \Omega_{lk} =
+\left\{
+\begin{matrix}
+1 & \text{if } k = l \\
+\alpha_{kl} & \text{if } k \neq l
+\end{matrix}
+\right.
+\quad , \quad
+\alpha_{kl} = \frac{1}{\tau_k \tau_l} \ln\left(\rho_{kl} \frac{\sigma_k \sigma_l}{\gamma_k \gamma_l} + 1\right)
+$$
+
 ## **Functions**
 
 ### [**sample_degree_sequence**](#sample_degree_sequence)
@@ -148,5 +186,5 @@ print("Layer 2 degree sequence:", degree_sequences[1])
 Sheung Hun Cheng and Nicholas J. Higham.  
 A modified cholesky algorithm based on a symmetric indefinite factorization. *SIAM Journal on Matrix Analysis and Applications*, 19(4):1097-1110, January 1998.
 
-Alec Fluer, Ian Laga, Logan Graham, Ellen Almirol, Makenna Meyer, and Breschine Cummins.  
-From survey data to social multiplex models: Incorporating interlayer correlation from multiple data sources. In preparation.
+Alec Fluer, Ian Laga, Logan Graham, Ellen Almirol, Makenna Meyer, John A. Schneider, and Breschine Cummins.  
+From survey data to social multiplex models: Incorporating interlayer correlation from multiple data sources. In revision.

@@ -48,5 +48,5 @@ This software is licensed under the MIT License. See LICENSE for details.
 
 ## **References**
 
-Alec Fluer, Ian Laga, Logan Graham, Ellen Almirol, Makenna Meyer, and Breschine Cummins.  
-From survey data to social multiplex models: Incorporating interlayer correlation from multiple data sources. In preparation.
+Alec Fluer, Ian Laga, Logan Graham, Ellen Almirol, Makenna Meyer, John A. Schneider, and Breschine Cummins.  
+From survey data to social multiplex models: Incorporating interlayer correlation from multiple data sources. In revision.

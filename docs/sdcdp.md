@@ -2,7 +2,7 @@
 
 ## **Overview**
 
-The **Social Distance Configuration model with Degree Preservation (SDC-DP)** is a modified version of the configuration model for sampling networks. It was proposed by [Fluer, et al. (2025)](#references). It samples networks where node degrees preserve a given degree sequence and edge formation is subject to edge formation probabilities. It biases sampling toward simple networks — those with no or few self-loops and multiedges — and supports both undirected and directed networks.
+The **Social Distance Configuration model with Degree Preservation (SDC-DP)** is a modified version of the configuration model for sampling networks. It was proposed by [Fluer et al. (2025)](#references). It samples networks where node degrees preserve a given degree sequence and edge formation is subject to edge formation probabilities. It biases sampling toward simple networks — those with no or few self-loops and multiedges — and supports both undirected and directed networks.
 
 Similar to the configuration model, SDC-DP assigns to each node the number of stubs indicated by its degree, and then assigns edges between nodes iteratively until every stub is connected. However, uniform random stub selection in the configuration model is replaced by non-uniform random node selection in SDC-DP. It selects the first node with probability proportional to its remaining degree, and selects the second node with probability conditioned on the first node and the given edge formation probabilities. It defers assigning self-loops and multiedges until a maximal simple network has been sampled.
 
@@ -47,6 +47,48 @@ p(j)=\frac{p_{ij}}{\sum_{k=1}^N p_{ik}}
 $$
 
 Once the edge $(i,j)\in\mathcal{E}$ is assigned, the degrees $d_i^{out}$ and $d_j^{in}$ are decremented, the probability $p_{ij}=0$ is updated, and the edge is masked from ocurring as a multiedge.
+
+If it is found that any $d_i^{out}=0$, the probabilities are updated to $p_{ij}=0$ for all $j$. If it is found that any $d_i^{in}=0$, the probabilities are updated to $p_{ji}=0$ for all $j$. If the probability matrix $P=0$ but the sum of the remaining degrees $\sum_{k=1}^N (d_k^{out}+d_k^{in}) \neq 0$, the algorithm defaults to the directed configuration model to randomly assign self-loops and multiedges.
+
+## **Mathematical Formulation**
+
+### **Undirected Network**
+
+Let $G=(V,E)$ be a network with $|V|=N$ nodes. Let $P=(p_{ij})$ be a symmetric probability matrix, where each entry $p_{ij}$ denotes the probability of an edge between node $i$ and node $j$. Let $\boldsymbol{d} = (d_1,\dots,d_N)$ be the degree sequence of the network, where each coordinate $d_i$ denotes the degree of node $i$.
+
+Edges are assigned iteratively by a two-stage scheme. The first node $i$ is selected with probability proportional to its remaining degree:
+
+$$
+p(i) = \frac{d_i}{\sum_{k=1}^N d_k}
+$$
+
+The second node $j$ is selected with probability conditioned on node $i$:
+
+$$
+p(j)=\frac{p_{ij}}{\sum_{k=1}^N p_{ik}}
+$$
+
+Once the edge $(i,j)\in E$ is assigned, the degrees $d_i$ and $d_j$ are decremented, the probability $p_{ij}=p_{ji}=0$ is updated, and the edge is masked from ocurring as a multiedge.
+
+If it is found that any $d_i=0$, the probabilities are updated to $p_{ij}=p_{ji}=0$ for all $j$. If the probability matrix $P=0$ but the sum of the remaining degrees $\sum_{k=1}^N d_k \neq 0$, the algorithm defaults to the undirected configuration model to randomly assign self-loops and multiedges.
+
+### **Directed Network**
+
+Let $G=(V,E)$ be a network with $|V|=N$ nodes. Let $P=(p_{ij})$ be a not necessarily symmetric probability matrix, where each entry $p_{ij}$ denotes the probability of an edge from the tail node $i$ to the head node $j$. Let $\boldsymbol{d}^{out} = (d_1^{out},\dots,d_N^{out})$ and $\boldsymbol{d}^{in} = (d_1^{in},\dots,d_N^{in})$ be the out- and in-degree sequences of the network, where the coordinates $d_i^{out}$ and $d_i^{in}$ denote the out- and in-degree of node $i$, respectively.
+
+Edges are assigned iteratively by a two-stage scheme. The first node $i$ is selected with probability proportional to its remaining degree:
+
+$$
+p(i) = \frac{d_i^{out}+d_i^{in}}{\sum_{k=1}^N (d_k^{out}+d_k^{in})}
+$$
+
+The second node $j$ is selected with probability conditioned on node $i$:
+
+$$
+p(j)=\frac{p_{ij}}{\sum_{k=1}^N p_{ik}}
+$$
+
+Once the edge $(i,j)\in E$ is assigned, the degrees $d_i^{out}$ and $d_j^{in}$ are decremented, the probability $p_{ij}=0$ is updated, and the edge is masked from ocurring as a multiedge.
 
 If it is found that any $d_i^{out}=0$, the probabilities are updated to $p_{ij}=0$ for all $j$. If it is found that any $d_i^{in}=0$, the probabilities are updated to $p_{ji}=0$ for all $j$. If the probability matrix $P=0$ but the sum of the remaining degrees $\sum_{k=1}^N (d_k^{out}+d_k^{in}) \neq 0$, the algorithm defaults to the directed configuration model to randomly assign self-loops and multiedges.
 
@@ -137,5 +179,5 @@ print("Edges:", list(G.edges()))
 
 ## **References**
 
-Alec Fluer, Ian Laga, Logan Graham, Ellen Almirol, Makenna Meyer, and Breschine Cummins.  
-From survey data to social multiplex models: Incorporating interlayer correlation from multiple data sources. In preparation.
+Alec Fluer, Ian Laga, Logan Graham, Ellen Almirol, Makenna Meyer, John A. Schneider, and Breschine Cummins.  
+From survey data to social multiplex models: Incorporating interlayer correlation from multiple data sources. In revision.
