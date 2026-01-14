@@ -38,6 +38,16 @@ $$
 \alpha_{kl} = \frac{1}{\tau_k \tau_l} \ln\left(\rho_{kl} \frac{\sigma_k \sigma_l}{\gamma_k \gamma_l} + 1\right)
 $$
 
+$$
+\Omega_{kl} = \Omega_{lk} =
+\begin{cases}
+1 & \text{if } k = l \\
+\alpha_{kl} & \text{if } k \neq l
+\end{cases}
+\quad , \quad
+\alpha_{kl} = \frac{1}{\tau_k \tau_l} \ln\left(\rho_{kl} \frac{\sigma_k \sigma_l}{\gamma_k \gamma_l} + 1\right)
+$$
+
 ## **Mathematical Formulation**
 
 Let $G=(V,E,\Lambda)$ be a multiplex network with $|V|=N$ nodes and $|\Lambda|=L$ network layers.
