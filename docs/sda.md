@@ -16,42 +16,20 @@ Given a network layer indexed by $l$, the connection probability between nodes $
 
 $$
 \underbrace{p_{ij}^l=\sum_{f=1}^{\dim(\mathcal{F})}\omega_f^l \cdot p_{ij,f}^l}_{\text{connection probability}}
-\quad
-,
-\quad
-\underbrace{\vphantom{\sum_{f=1}^{\dim(\mathcal{F})}}p_{ij,f}^l=\frac{1}{1+[(b_f^l)^{-1}\delta_f(x_{i,f},x_{j,f})]^{h_f^l}}}_{\text{social-feature-restricted attachment probability}}
-$$
-
-Given a social feature indexed by $f$:
-
-- $x_{i,f}$ is the location of node $i$
-
-- $\delta_f(\cdot,\cdot)$ is a distance function that quantifies separation between nodes
-
-- $b_f^l>0$ is a characteristic distance or length scale at which $p_{ij,f}^l=0.5$
-
-- $h_f^l \geq 1$ is a homophily parameter that describes the tendency of similar nodes to form connections
-
-- $\omega_f^l\geq 0$ is a weight coefficient that describes the contribution of the social feature, where $\sum_f\omega_f^l=1$
-
-## **Mathematical Formulation**
-
-Let $G=(V,E,\Lambda)$ be a multiplex network with $|V|=N$ nodes and $|\Lambda|=L$ network layers. Let $F$ be a real-valued $\dim(F)$-dimensional social space. Let $\boldsymbol{x}_i=(x_{i,1},\dots,x_{i,\dim(F)})\in F$ be the position of node $i$ in this space, where each coordinate $x_{i,f}$ denotes the location of node $i$ in a distinctive social feature, which may itself be multidimensional.
-
-Given a network layer indexed by $l$, the connection probability between nodes $i$ and $j$ is computed as a convex combination of social-feature-restricted attachment probabilities:
-
-$$
-p_{ij}^l=\sum_{f=1}^{\dim(F)}\omega_f^l \cdot p_{ij,f}^l
 \quad , \quad
-p_{ij,f}^l=\frac{1}{1+[(b_f^l)^{-1}\delta_f(x_{i,f},x_{j,f})]^{h_f^l}}
+\underbrace{p_{ij,f}^l=\frac{1}{1+[(b_f^l)^{-1}\delta_f(x_{i,f},x_{j,f})]^{h_f^l}}}_{\text{social-feature-restricted attachment probability}}
 $$
 
 Given a social feature indexed by $f$:
 
 - $x_{i,f}$ is the location of node $i$
+
 - $\delta_f(\cdot,\cdot)$ is a distance function that quantifies separation between nodes
+
 - $b_f^l>0$ is a characteristic distance or length scale at which $p_{ij,f}^l=0.5$
+
 - $h_f^l \geq 1$ is a homophily parameter that describes the tendency of similar nodes to form connections
+
 - $\omega_f^l\geq 0$ is a weight coefficient that describes the contribution of the social feature, where $\sum_f\omega_f^l=1$
 
 ## **MultiplexSDA Attributes**
