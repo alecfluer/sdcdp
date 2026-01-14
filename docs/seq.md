@@ -32,11 +32,11 @@ $$
 \tau^2_l = \ln\left(1 + \frac{\sigma^2_l - \gamma_l}{\gamma_l^2}\right)
 $$
 
-$$
+<!-- $$
 \Omega_{kl} = \Omega_{lk} = \begin{cases} 1, & k = l \\ \alpha_{kl}, & k \neq l \end{cases}
 \quad , \quad
 \alpha_{kl} = \frac{1}{\tau_k \tau_l} \ln\left(\rho_{kl} \frac{\sigma_k \sigma_l}{\gamma_k \gamma_l} + 1\right)
-$$
+$$ -->
 
 $$
 \Omega_{kl} = \Omega_{lk} =
@@ -52,7 +52,7 @@ $$
 
 Let $G=(V,E,\Lambda)$ be a multiplex network with $|V|=N$ nodes and $|\Lambda|=L$ network layers.
 
-Let $\boldsymbol{d}_l=(d_{1l},\dots,d_{Nl})$, where each coordinate $d_{il}$ denotes the degree of node $i$ in network layer $l$. Let $\boldsymbol{\mu}_i=(\mu_{i1},\dots,\mu_{iL})$, where each coordinate $\mu_{il}$ denotes the mean degree of node $i$ in network layer $l$. These are sampled according to:
+Let $\boldsymbol{d}_l = (d_{1l}, \dots, d_{Nl})$, where each coordinate $d_{il}$ denotes the degree of node $i$ in network layer $l$. Let $\boldsymbol{\mu}_i=(\mu_{i1},\dots,\mu_{iL})$, where each coordinate $\mu_{il}$ denotes the mean degree of node $i$ in network layer $l$. These are sampled according to:
 
 $$
 d_{il} \mid \mu_{il} \sim \text{Poisson}(\mu_{il})
